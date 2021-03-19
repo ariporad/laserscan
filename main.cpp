@@ -1,4 +1,5 @@
 #include "opencv2/opencv.hpp"
+#include "process_frame.cpp"
 #include <iostream>
 
 using namespace std;
@@ -26,12 +27,16 @@ int main( int argc, char** argv )
 
 		imshow("Frame", frame);
 
-		// Wait for 1ms, but the loop is also rate-limited by the camera's framerate.
-		char c = waitKey(1); 
-		if (c == 27) break; // Exit if ESC is pressed
+		process_frame(frame);
+
+		break;
+
+		// // Wait for 1ms, but the loop is also rate-limited by the camera's framerate.
+		// char c = waitKey(1); 
+		// if (c == 27) break; // Exit if ESC is pressed
 	}
 
-	cap.relese();
+	cap.release();
 
 	destroyAllWindows();
 
